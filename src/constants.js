@@ -4,33 +4,33 @@ import CustomInput from "./components/editable/CustomInput";
 import CustomSelect from "./components/editable/CustomSelect";
 import CustomTextarea from "./components/editable/CustomTextarea";
 
-export const DUMMY_DATA = [
-  {
-    id: 1,
-    name: "AltaSwim Sandals",
-    description: "Cloud White / Beam Pink / Semi Lucid Fuchsia",
-    date: "04/17/2022",
-    status: "Active",
-  },
-  {
-    id: 2,
-    name: "NMD 360 SHOES",
-    description: "Bliss Blue / Almost Blue / Cloud White",
-    date: "08/16/2022",
-    status: "Pending",
-  },
-  {
-    id: 3,
-    name: "STAN SMITH SHOES",
-    description: "Cream White / Cream White / Core Black",
-    date: "03/31/2022",
-    status: "Cancelled",
-  },
-];
+// export const DUMMY_DATA = [
+//   {
+//     id: 1,
+//     name: "AltaSwim Sandals",
+//     description: "Cloud White / Beam Pink / Semi Lucid Fuchsia",
+//     date: "04/17/2022",
+//     status: "Active",
+//   },
+//   {
+//     id: 2,
+//     name: "NMD 360 SHOES",
+//     description: "Bliss Blue / Almost Blue / Cloud White",
+//     date: "08/16/2022",
+//     status: "Pending",
+//   },
+//   {
+//     id: 3,
+//     name: "STAN SMITH SHOES",
+//     description: "Cream White / Cream White / Core Black",
+//     date: "03/31/2022",
+//     status: "Cancelled",
+//   },
+// ];
 
 export const tableState = atom({
   key: "table",
-  default: DUMMY_DATA,
+  default: [],
 });
 
 export const searchState = atom({
@@ -46,7 +46,7 @@ export const searchState = atom({
 
 export const UnFilteredTableState = atom({
   key: "unfilteredTable",
-  default: DUMMY_DATA,
+  default: [],
 });
 
 export const columns = [

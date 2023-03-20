@@ -8,25 +8,40 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import Search from "./Search";
-import { columns, tableState } from "../constants";
+import { columns, tableState, UnFilteredTableState } from "../constants";
 import EditableCell from "./editable/EditableCell";
 
 const CustomTable = () => {
   const [tableData] = useRecoilState(tableState);
 
-  // useEffect(()=>{
-  //     const getTableData = async()=>{
-  //         const url = "";
-  //         const response = await fetch(url);
-  //         const body = await response.json();
-  //         setTableData(body);
+  const setunFilteredData = useSetRecoilState(UnFilteredTableState);
+  const setTableData = useSetRecoilState(tableState);
 
-  //     }
-  //     getTableData()
+  useEffect(() => {
+    const getTableData = async () => {
+      const url =
+        "https://table-task-1a203-default-rtdb.firebaseio.com/items.json";
+      const response = await fetch(url);
+      const data = await response.json();
 
-  // }, [])
+      let loadedItems = [];
+
+      for (let key in data) {
+        loadedItems.push({
+          id: data[key].id,
+          name: data[key].name,
+          description: data[key].description,
+          date: data[key].date,
+          status: data[key].status,
+        });
+      }
+      setTableData(loadedItems);
+      setunFilteredData(loadedItems);
+    };
+    getTableData();
+  }, [setTableData, setunFilteredData]);
 
   return (
     <TableContainer component={Paper}>
