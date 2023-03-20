@@ -57,28 +57,8 @@ const EditableCell = ({
     });
   };
 
-  const handleChange = (event, date = false) => {
+  const handleChange = (event) => {
     inlineValue.current = event.target.value;
-  };
-
-  const handleDateChange = (dayjs) => {
-    inlineValue.current = dayjs;
-  };
-
-  const handleDateBlur = () => {
-    const date = new Date(inlineValue.current);
-
-    let month = (date.getMonth() + 1).toString();
-    month = month.length > 1 ? month : "0" + month;
-
-    let day = date.getDate().toString();
-    day = day.length > 1 ? day : "0" + day;
-
-    const year = date.getFullYear();
-
-    const updatedDate = `${month}/${day}/${year}`;
-
-    handleBlur(updatedDate, true);
   };
 
   return (
@@ -87,8 +67,6 @@ const EditableCell = ({
         <EditableComponent
           handleBlur={handleBlur}
           handleChange={handleChange}
-          handleDateChange={handleDateChange}
-          handleDateBlur={handleDateBlur}
           ref={inlineValue}
         />
       ) : (
