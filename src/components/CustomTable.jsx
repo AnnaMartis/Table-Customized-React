@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 import { useRecoilState } from "recoil";
 import Search from "./Search";
 import { columns, tableState } from "../constants";
-import EditableCell from "./EditableCell";
+import EditableCell from "./editable/EditableCell";
 
 const CustomTable = () => {
   const [tableData] = useRecoilState(tableState);

@@ -1,14 +1,15 @@
 import { atom } from "recoil";
-import CustomInput from "./components/CustomInput";
-import CustomSelect from "./components/CustomSelect";
-import CustomTextarea from "./components/CustomTextarea";
+import CustomDatePicker from "./components/editable/CustomDatePicker";
+import CustomInput from "./components/editable/CustomInput";
+import CustomSelect from "./components/editable/CustomSelect";
+import CustomTextarea from "./components/editable/CustomTextarea";
 
 export const DUMMY_DATA = [
   {
     id: 1,
     name: "AltaSwim Sandals",
     description: "Cloud White / Beam Pink / Semi Lucid Fuchsia",
-    date: "",
+    date: "04/17/2022",
     status: "Active",
   },
   {
@@ -70,7 +71,7 @@ export const columns = [
   {
     label: "Date",
     name: "date",
-    editableComponent: CustomInput,
+    editableComponent: CustomDatePicker,
     numeric: false
   },
   {

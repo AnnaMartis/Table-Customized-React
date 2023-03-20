@@ -13,6 +13,7 @@ const CustomTextarea = forwardRef(({ handleBlur, handleChange }, ref) => {
       onBlur={handleBlur}
       onChange={handleChange}
       defaultValue={ref.current}
+     
     />
   );
 });
