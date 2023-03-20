@@ -2,7 +2,6 @@
   "name": "table-app",
   "version": "0.1.0",
   "private": true,
-  "RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED" : false,
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

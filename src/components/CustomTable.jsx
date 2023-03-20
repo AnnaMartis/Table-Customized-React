@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -41,13 +41,53 @@ const CustomTable = () => {
     getTableData();
   }, [setTableData, setunFilteredData]);
 
+  // Column Resizing Part
+
+  const [width, setWidth] = useState({
+    id: 20,
+    name: 20,
+    description: 20,
+    date: 20,
+    status: 20,
+  });
+
+  const handleMouseDown = (event) => {
+    event.target.setAttribute("active", true);
+  };
+
+  const handleMouseMove = (event, name) => {
+    const attribute = event.target.getAttribute("active");
+    if (attribute === "true") {
+      const dif = (((event.clientX - 48) % 200) * 100) / 1000;
+
+      setWidth((prevValues) => ({ ...prevValues, [name]: dif }));
+    }
+  };
+
+  const handleMouseUp = (event) => {
+    event.target.setAttribute("active", false);
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             {columns.map((header) => (
-              <TableCell key={header.name} align="right">
+              <TableCell
+                key={header.name}
+                align="right"
+                sx={{
+                  padding: "0px .5rem",
+                  borderRight: ".5px solid black",
+                  width: `${width[header.name]}%`,
+                  cursor: "pointer",
+                  userSelect: "none",
+                }}
+                onMouseDown={handleMouseDown}
+                onMouseMove={(event) => handleMouseMove(event, header.name)}
+                onMouseUp={handleMouseUp}
+              >
                 {header.label}
               </TableCell>
             ))}
@@ -62,22 +102,18 @@ const CustomTable = () => {
         </TableHead>
         <TableBody>
           {tableData.map((row, rowIdx) => (
-            <TableRow
-              key={row.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
+            <TableRow key={row.id}>
               {columns.map((column) => (
-                  <TableCell align="right" key={column.name}>
-                    <EditableCell
-                      value={row[column.name]}
-                      rowIdx={rowIdx}
-                      column={column.name}
-                      numeric={column.numeric}
-                      EditableComponent={column.editableComponent}
-                    />
-                  </TableCell>
-                )
-              )}
+                <TableCell align="right" key={column.name}>
+                  <EditableCell
+                    value={row[column.name]}
+                    rowIdx={rowIdx}
+                    column={column.name}
+                    numeric={column.numeric}
+                    EditableComponent={column.editableComponent}
+                  />
+                </TableCell>
+              ))}
             </TableRow>
           ))}
         </TableBody>

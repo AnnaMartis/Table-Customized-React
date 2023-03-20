@@ -5,7 +5,7 @@ import CustomTable from "./components/CustomTable";
 function App() {
   return (
     <Grid padding="3rem">
-      <h1>Simple Table</h1>
+      <h1>Table</h1>
         <CustomTable />
     </Grid>
   );
