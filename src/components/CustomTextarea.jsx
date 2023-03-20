@@ -2,6 +2,7 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { forwardRef } from "react";
 
 const CustomTextarea = forwardRef(({ handleBlur, handleChange }, ref) => {
+  console.log('current', ref.current)
   return (
     <TextareaAutosize
       aria-label="minimum height"

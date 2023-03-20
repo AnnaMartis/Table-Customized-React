@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import { useState, useRef } from "react";
 
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { editableComponentNameValueMap, tableState, UnFilteredTableState } from "../constants";
+import { tableState, UnFilteredTableState } from "../constants";
 
 
 const EditableCell = ({
@@ -10,7 +10,7 @@ const EditableCell = ({
   rowIdx,
   column,
   numeric,
-  editableComponent,
+  EditableComponent,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -18,9 +18,11 @@ const EditableCell = ({
   const setTableData = useSetRecoilState(tableState);
   const setUnfilteredData = useSetRecoilState(UnFilteredTableState);
 
-  const inlineValue = useRef(value);
+  const inlineValue = useRef();
+
 
   const handleFocus = () => {
+    inlineValue.current = value;
     setIsFocused(true);
   };
 
@@ -59,8 +61,6 @@ const EditableCell = ({
     inlineValue.current = event.target.value;
   };
 
-
-  const EditableComponent = editableComponentNameValueMap[editableComponent];
 
   return (
     <>

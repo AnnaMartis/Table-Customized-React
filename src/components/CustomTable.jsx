@@ -65,7 +65,7 @@ const CustomTable = () => {
                       rowIdx={rowIdx}
                       column={column.name}
                       numeric={column.numeric}
-                      editableComponent={column.editableComponent}
+                      EditableComponent={column.editableComponent}
                     />
                   </TableCell>
                 );
