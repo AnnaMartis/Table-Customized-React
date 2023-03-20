@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 import { useRecoilState } from "recoil";
 import Search from "./Search";
 import { columns, tableState } from "../constants";
-import EditableInput from "./EditableInput";
+import EditableCell from "./EditableCell";
 
 const CustomTable = () => {
   const [tableData] = useRecoilState(tableState);
@@ -57,24 +57,19 @@ const CustomTable = () => {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="right">
-                <EditableInput
-                  value={row.id}
-                  rowIdx={rowIdx}
-                  column="id"
-                  numeric
-                />
-              </TableCell>
-              <TableCell align="right">
-                <EditableInput
-                  value={row.name}
-                  rowIdx={rowIdx}
-                  column="name"
-                />
-              </TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">{row.date}</TableCell>
-              <TableCell align="right">{row.status}</TableCell>
+              {columns.map((column) => {
+                return (
+                  <TableCell align="right" key={column.id}>
+                    <EditableCell
+                      value={row[column.name]}
+                      rowIdx={rowIdx}
+                      column={column.name}
+                      numeric={column.numeric}
+                      editableComponent={column.editableComponent}
+                    />
+                  </TableCell>
+                );
+              })}
             </TableRow>
           ))}
         </TableBody>

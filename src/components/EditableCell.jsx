@@ -1,11 +1,17 @@
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
 import { useState, useRef } from "react";
 
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { tableState, UnFilteredTableState } from "../constants";
+import { editableComponentNameValueMap, tableState, UnFilteredTableState } from "../constants";
 
-const EditableInput = ({ value, rowIdx, column, numeric = false }) => {
+
+const EditableCell = ({
+  value,
+  rowIdx,
+  column,
+  numeric,
+  editableComponent,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const tableData = useRecoilValue(tableState);
@@ -53,16 +59,16 @@ const EditableInput = ({ value, rowIdx, column, numeric = false }) => {
     inlineValue.current = event.target.value;
   };
 
+
+  const EditableComponent = editableComponentNameValueMap[editableComponent];
+
   return (
     <>
       {isFocused ? (
-        <TextField
-          variant="outlined"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          autoFocus
+        <EditableComponent
+          handleBlur={handleBlur}
+          handleChange={handleChange}
           ref={inlineValue}
-          defaultValue={inlineValue.current}
         />
       ) : (
         <Typography onClick={handleFocus}>{value}</Typography>
@@ -71,4 +77,4 @@ const EditableInput = ({ value, rowIdx, column, numeric = false }) => {
   );
 };
 
-export default EditableInput;
+export default EditableCell;

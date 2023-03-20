@@ -1,6 +1,8 @@
 import { atom } from "recoil";
+import CustomInput from "./components/CustomInput";
+import CustomTextarea from "./components/CustomTextarea";
 
-export let DUMMY_DATA = [
+export const DUMMY_DATA = [
   {
     id: 1,
     name: "AltaSwim Sandals",
@@ -49,21 +51,39 @@ export const columns = [
   {
     label: "Id",
     name: "id",
+    editableComponent: 'customInput',
+    numeric: true
   },
   {
     label: "Name",
     name: "name",
+    editableComponent: 'customInput',
+    numeric: false
   },
   {
     label: "Description",
     name: "description",
+    editableComponent: 'customTextarea',
+    numeric: false
   },
   {
     label: "Date",
     name: "date",
+    editableComponent: 'customInput',
+    numeric: false
   },
   {
     label: "Status",
     name: "status",
+    editableComponent: 'customInput',
+    numeric: false
   },
 ];
+
+
+export const editableComponentNameValueMap = {
+  customInput: CustomInput,
+  customTextarea: CustomTextarea
+
+
+}
