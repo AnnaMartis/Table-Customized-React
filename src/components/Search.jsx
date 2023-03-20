@@ -34,14 +34,14 @@ const Search = ({ name }) => {
 
   useEffect(() => {
     const filterData = () => {
-      const filteredData = unfilteredData.filter((item) => {
-        return columns.every((header) => {
+      const filteredData = unfilteredData.filter((item) => (
+         columns.every((header) => {
           return item[header.name]
             .toString()
             .toLowerCase()
             .includes(searchData[[header.name]].toString().toLowerCase());
-        });
-      });
+        })
+      ));
       setTableData(filteredData);
     };
     debounce(filterData)();

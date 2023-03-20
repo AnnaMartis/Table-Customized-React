@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,7 +6,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
 import { useRecoilState, useSetRecoilState } from "recoil";
 import Search from "./Search";
 import { columns, tableState, UnFilteredTableState } from "../constants";
@@ -48,22 +46,18 @@ const CustomTable = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            {columns.map((header) => {
-              return (
-                <TableCell key={header.name} align="right">
-                  {header.label}
-                </TableCell>
-              );
-            })}
+            {columns.map((header) => (
+              <TableCell key={header.name} align="right">
+                {header.label}
+              </TableCell>
+            ))}
           </TableRow>
           <TableRow>
-            {columns.map((header) => {
-              return (
-                <TableCell key={header.name} align="right">
-                  <Search name={header.name} />
-                </TableCell>
-              );
-            })}
+            {columns.map((header) => (
+              <TableCell key={header.label} align="right">
+                <Search name={header.name} />
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -72,9 +66,8 @@ const CustomTable = () => {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              {columns.map((column) => {
-                return (
-                  <TableCell align="right" key={column.id}>
+              {columns.map((column) => (
+                  <TableCell align="right" key={column.name}>
                     <EditableCell
                       value={row[column.name]}
                       rowIdx={rowIdx}
@@ -83,8 +76,8 @@ const CustomTable = () => {
                       EditableComponent={column.editableComponent}
                     />
                   </TableCell>
-                );
-              })}
+                )
+              )}
             </TableRow>
           ))}
         </TableBody>
