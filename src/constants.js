@@ -44,42 +44,85 @@ export const searchState = atom({
   },
 });
 
-export const UnFilteredTableState = atom({
+export const unFilteredTableState = atom({
   key: "unfilteredTable",
   default: [],
 });
+
 
 export const columns = [
   {
     label: "Id",
     name: "id",
-    editableComponent:  CustomInput,
-    numeric: true
+    editableComponent: CustomInput,
+    numeric: true,
   },
   {
     label: "Name",
     name: "name",
     editableComponent: CustomInput,
-    numeric: false
+    numeric: false,
   },
   {
     label: "Description",
     name: "description",
     editableComponent: CustomTextarea,
-    numeric: false
+    numeric: false,
   },
   {
     label: "Date",
     name: "date",
     editableComponent: CustomDatePicker,
-    numeric: false
+    numeric: false,
   },
   {
     label: "Status",
     name: "status",
     editableComponent: CustomSelect,
-    numeric: false
+    numeric: false,
   },
 ];
 
 
+
+
+
+
+// Resizable Part
+
+export const resizeActiveState = atom({
+  key: "isResizeActive",
+  default: false,
+});
+
+export const columnClickedState = atom({
+  key: "isColumnClicked",
+  default: false,
+});
+
+export const positionsState = atom({
+  key: "positons",
+  default: {
+    id: {
+      start: 48,
+      width: 170,
+    },
+
+    name: {
+      start: 218,
+      width: 170,
+    },
+    description: {
+      start: 388,
+      width: 170,
+    },
+    date: {
+      start: 558,
+      width: 170,
+    },
+    status: {
+      start: 728,
+      width: 170,
+    },
+  },
+});

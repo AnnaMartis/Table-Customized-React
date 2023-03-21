@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import { useState, useRef } from "react";
 
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { tableState, UnFilteredTableState } from "../../constants";
+import { tableState, unFilteredTableState } from "../../constants";
 
 const EditableCell = ({
   value,
@@ -15,7 +15,7 @@ const EditableCell = ({
 
   const tableData = useRecoilValue(tableState);
   const setTableData = useSetRecoilState(tableState);
-  const setUnfilteredData = useSetRecoilState(UnFilteredTableState);
+  const setUnfilteredData = useSetRecoilState(unFilteredTableState);
 
   const inlineValue = useRef();
 

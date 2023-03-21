@@ -6,7 +6,7 @@ import {
   columns,
   searchState,
   tableState,
-  UnFilteredTableState,
+  unFilteredTableState,
 } from "../constants";
 
 const debounce = (func, wait = 800) => {
@@ -20,7 +20,7 @@ const debounce = (func, wait = 800) => {
 
 const Search = ({ name }) => {
   const searchData = useRecoilValue(searchState);
-  const unfilteredData = useRecoilValue(UnFilteredTableState);
+  const unfilteredData = useRecoilValue(unFilteredTableState);
 
   const setSearchData = useSetRecoilState(searchState);
   const setTableData = useSetRecoilState(tableState);
@@ -51,6 +51,7 @@ const Search = ({ name }) => {
     <TextField
       value={searchData[name]}
       variant="standard"
+      label="Search"
       onChange={(event) => {
         handleInputChange(event, name);
       }}
